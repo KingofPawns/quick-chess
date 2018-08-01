@@ -32,7 +32,7 @@ namespace ChessLibrary
 		}
 
 		// Initialize the chess board and place piece on thier initial positions
-		public void Init()
+		public void Init(bool chess960)
 		{
 			m_cells.Clear();		// Remove any existing chess cells
 
@@ -43,28 +43,36 @@ namespace ChessLibrary
 					m_cells.Add(new Cell(row,col));	// Initialize and add the new chess cell
 				}
 
-			// Now setup the board for black side
-			m_cells["a1"].piece = new Piece(Piece.PieceType.Rook,m_BlackSide);
-			m_cells["h1"].piece = new Piece(Piece.PieceType.Rook,m_BlackSide);
-			m_cells["b1"].piece = new Piece(Piece.PieceType.Knight,m_BlackSide);
-			m_cells["g1"].piece = new Piece(Piece.PieceType.Knight,m_BlackSide);
-			m_cells["c1"].piece = new Piece(Piece.PieceType.Bishop,m_BlackSide);
-			m_cells["f1"].piece = new Piece(Piece.PieceType.Bishop,m_BlackSide);
-			m_cells["e1"].piece = new Piece(Piece.PieceType.King,m_BlackSide);
-			m_cells["d1"].piece = new Piece(Piece.PieceType.Queen,m_BlackSide);
-			for (int col=1; col<=8; col++)
-				m_cells[2, col].piece = new Piece(Piece.PieceType.Pawn,m_BlackSide);
+            if (chess960)
+            {
 
-			// Now setup the board for white side
-			m_cells["a8"].piece = new Piece(Piece.PieceType.Rook,m_WhiteSide);
-			m_cells["h8"].piece = new Piece(Piece.PieceType.Rook,m_WhiteSide);
-			m_cells["b8"].piece = new Piece(Piece.PieceType.Knight,m_WhiteSide);
-			m_cells["g8"].piece = new Piece(Piece.PieceType.Knight,m_WhiteSide);
-			m_cells["c8"].piece = new Piece(Piece.PieceType.Bishop,m_WhiteSide);
-			m_cells["f8"].piece = new Piece(Piece.PieceType.Bishop,m_WhiteSide);
-			m_cells["e8"].piece = new Piece(Piece.PieceType.King,m_WhiteSide);
-			m_cells["d8"].piece = new Piece(Piece.PieceType.Queen,m_WhiteSide);
-			for (int col=1; col<=8; col++)
+            }
+            else
+            {
+                // Now setup the board for black side
+                m_cells["a1"].piece = new Piece(Piece.PieceType.Rook, m_BlackSide);
+                m_cells["h1"].piece = new Piece(Piece.PieceType.Rook, m_BlackSide);
+                m_cells["b1"].piece = new Piece(Piece.PieceType.Knight, m_BlackSide);
+                m_cells["g1"].piece = new Piece(Piece.PieceType.Knight, m_BlackSide);
+                m_cells["c1"].piece = new Piece(Piece.PieceType.Bishop, m_BlackSide);
+                m_cells["f1"].piece = new Piece(Piece.PieceType.Bishop, m_BlackSide);
+                m_cells["e1"].piece = new Piece(Piece.PieceType.King, m_BlackSide);
+                m_cells["d1"].piece = new Piece(Piece.PieceType.Queen, m_BlackSide);
+
+
+                // Now setup the board for white side
+                m_cells["a8"].piece = new Piece(Piece.PieceType.Rook, m_WhiteSide);
+                m_cells["h8"].piece = new Piece(Piece.PieceType.Rook, m_WhiteSide);
+                m_cells["b8"].piece = new Piece(Piece.PieceType.Knight, m_WhiteSide);
+                m_cells["g8"].piece = new Piece(Piece.PieceType.Knight, m_WhiteSide);
+                m_cells["c8"].piece = new Piece(Piece.PieceType.Bishop, m_WhiteSide);
+                m_cells["f8"].piece = new Piece(Piece.PieceType.Bishop, m_WhiteSide);
+                m_cells["e8"].piece = new Piece(Piece.PieceType.King, m_WhiteSide);
+                m_cells["d8"].piece = new Piece(Piece.PieceType.Queen, m_WhiteSide);
+            }
+            for (int col = 1; col <= 8; col++)
+                m_cells[2, col].piece = new Piece(Piece.PieceType.Pawn, m_BlackSide);
+            for (int col=1; col<=8; col++)
 				m_cells[7, col].piece = new Piece(Piece.PieceType.Pawn,m_WhiteSide);
 		}
 

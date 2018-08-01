@@ -397,7 +397,7 @@ namespace Chess
             if (openDialog.ShowDialog() == DialogResult.OK)
             {
                 ChessGame = new Game();
-                ChessGame.Reset();	// Reset the game board
+                ChessGame.Reset(false);	// Reset the game board
                 ParentForm.ChessCaptureBar.Clear();
 
                 IsRunning = true;
@@ -453,7 +453,7 @@ namespace Chess
 				// Handle the events fired by the library
 				ChessGame.ComputerThinking += new ChessLibrary.Game.ChessComputerThinking(ComputerThinking);
 
-				ChessGame.Reset();	// Reset the game board
+				ChessGame.Reset(NewGameDlg.checkBox1.Checked);	// Reset the game board
 				IsRunning = true;
 				LogCounter = 0;
 

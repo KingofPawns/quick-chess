@@ -33,7 +33,7 @@ namespace Chess
 		public System.Windows.Forms.TextBox BlackPlayerName;
 		public System.Windows.Forms.TextBox WhitePlayerName;
 		public System.Windows.Forms.PictureBox WhitePlayerImage;
-        private CheckBox checkBox1;
+        public CheckBox checkBox1;
 
         /// <summary>
         /// Required designer variable.
