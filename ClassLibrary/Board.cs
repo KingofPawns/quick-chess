@@ -8,6 +8,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Xml;
 
 namespace ChessLibrary
@@ -45,7 +46,32 @@ namespace ChessLibrary
 
             if (chess960)
             {
+                bool validPlacement = false;
+                do
+                {
+                    List<Piece> toBePlaced = new List<Piece>();
+                    toBePlaced.Add(new Piece(Piece.PieceType.King, m_WhiteSide));
+                    toBePlaced.Add(new Piece(Piece.PieceType.Queen, m_WhiteSide));
+                    toBePlaced.Add(new Piece(Piece.PieceType.Bishop, m_WhiteSide));
+                    toBePlaced.Add(new Piece(Piece.PieceType.Bishop, m_WhiteSide));
+                    toBePlaced.Add(new Piece(Piece.PieceType.Knight, m_WhiteSide));
+                    toBePlaced.Add(new Piece(Piece.PieceType.Knight, m_WhiteSide));
+                    toBePlaced.Add(new Piece(Piece.PieceType.Rook, m_WhiteSide));
+                    toBePlaced.Add(new Piece(Piece.PieceType.Rook, m_WhiteSide));
 
+                    char index = 'a';
+                    Random rand = new Random();
+                    while(toBePlaced.Count != 0)
+                    {
+                        int num = rand.Next(toBePlaced.Count);
+                        m_cells[index + "8"].piece = toBePlaced[num];
+                        m_cells[index + "1"].piece = new Piece(toBePlaced[num].m_type, m_BlackSide);
+                        toBePlaced.RemoveAt(num);
+
+                        index++;
+                    }
+                    validPlacement = true;
+                } while (!validPlacement);
             }
             else
             {

@@ -21,7 +21,8 @@ namespace ChessLibrary
 		// chess piece class attributes
 		int m_moves;			// total no. of moves by the piece
 		Side m_side;			// The ches side i.e. white/back to which this piece belongs
-		PieceType m_type;		// type of the chess piece i.e. king, queen etc.
+        public PieceType m_type { get; set; }
+        //PieceType m_type;		// type of the chess piece i.e. king, queen etc.
 
 		public enum PieceType {Empty, King, Queen, Rook, Bishop, Knight, Pawn};	// define the possible types for chess piece
 
