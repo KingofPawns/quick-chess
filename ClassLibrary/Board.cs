@@ -58,7 +58,9 @@ namespace ChessLibrary
                     toBePlaced.Add(new Piece(Piece.PieceType.Knight, m_WhiteSide));
                     toBePlaced.Add(new Piece(Piece.PieceType.Rook, m_WhiteSide));
                     toBePlaced.Add(new Piece(Piece.PieceType.Rook, m_WhiteSide));
-
+                    List<Cell> Bishops = new List<Cell>();
+                    char kingIndex = 'a';
+                    List<char> rookIndexes = new List<char>();
                     char index = 'a';
                     Random rand = new Random();
                     while(toBePlaced.Count != 0)
@@ -66,11 +68,28 @@ namespace ChessLibrary
                         int num = rand.Next(toBePlaced.Count);
                         m_cells[index + "8"].piece = toBePlaced[num];
                         m_cells[index + "1"].piece = new Piece(toBePlaced[num].m_type, m_BlackSide);
+                        
+                        if(toBePlaced[num].IsBishop())
+                        {
+                            Bishops.Add(m_cells[index + "8"]);
+                        }
+                        else if(toBePlaced[num].IsRook())
+                        {
+                            rookIndexes.Add(index);
+                        }
+                        else if(toBePlaced[num].IsKing())
+                        {
+                            kingIndex = index;
+                        }
+
                         toBePlaced.RemoveAt(num);
 
                         index++;
                     }
-                    validPlacement = true;
+                    if(Bishops[1].IsDark != Bishops[0].IsDark && (kingIndex > rookIndexes[0] && kingIndex < rookIndexes[1]))
+                    {
+                        validPlacement = true;
+                    }
                 } while (!validPlacement);
             }
             else
