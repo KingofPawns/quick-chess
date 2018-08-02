@@ -32,6 +32,11 @@ namespace ChessLibrary
 			m_cells = new Cells();					// Initialize the chess cells collection
 		}
 
+        public Cells GetTheCells()
+        {
+            return m_cells;
+        }
+
 		// Initialize the chess board and place piece on thier initial positions
 		public void Init(bool chess960)
 		{
